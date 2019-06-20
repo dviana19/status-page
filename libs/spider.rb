@@ -1,7 +1,5 @@
 require "oga"
 require "open-uri"
-require "command_line_reporter"
-require_relative "data_store"
 
 class Spider
   def initialize(page)

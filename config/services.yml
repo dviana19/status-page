@@ -1,0 +1,10 @@
+services:
+  - name: Bitbucket
+    address: https://bitbucket.status.atlassian.com/
+  - name: Cloudflare
+    address: https://www.cloudflarestatus.com/
+  - name: Rubygems
+    address: https://status.rubygems.org/
+  - name: Github
+    address: https://www.githubstatus.com/
+interval: 5
