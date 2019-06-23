@@ -45,7 +45,7 @@ class Presenter
           column(record[0], width: WIDTH[:service])
           column(record[1], width: WIDTH[:status])
           column(record[2], width: WIDTH[:message])
-          column(Time.at(record[2].to_i).strftime("%d.%m.%Y %T"), width: WIDTH[:time], align: ALIGN)
+          column(Time.at(record[3].to_i).strftime("%d.%m.%Y %T"), width: WIDTH[:time], align: ALIGN)
         end
       end
     end
