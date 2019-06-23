@@ -68,5 +68,3 @@ class StatusPage < Thor
     DataStore.restore(path)
   end
 end
-
-StatusPage.start(ARGV)

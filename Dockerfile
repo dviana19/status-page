@@ -12,3 +12,6 @@ RUN gem install time_difference
 RUN gem install command_line_reporter
 
 ADD . /status-page
+
+RUN ln -s /status-page/bin/status-page /usr/local/bin/status-page
+RUN chmod +x /status-page/bin/status-page
