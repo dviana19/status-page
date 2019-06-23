@@ -1,11 +1,23 @@
 # Status-page
 A command-line tool that will pull status information from different services, displays the results and saves it into a data store.
 
-# Installation
+## Installation
 Download the docker image
 
 ```bash
 $ docker pull diogoviana/status-page
+```
+
+## Configuration
+It is possible to configure the services that will be checked and the inverval(in seconds) of time during the live mode. You can find this file inside config/setup.yml
+
+```yaml
+$ services:
+    - name: Bitbucket
+      address: https://bitbucket.status.atlassian.com/
+    - name: Github
+      address: https://www.githubstatus.com/
+  interval: 5
 ```
 
 ## Usage
