@@ -48,7 +48,7 @@ RSpec.describe DataStore do
     describe "#restore" do
       after { subject.restore("restore_path") }
       it "should restore a bkp copy from a given path" do
-        expect(FileUtils).to receive(:cp).with(/restore_path/, anything)
+        expect(FileUtils).to receive(:cp).with(/restore_path/, anything, {:preserve=>true})
       end
     end
   end

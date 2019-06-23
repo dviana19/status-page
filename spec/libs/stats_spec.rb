@@ -16,7 +16,7 @@ RSpec.describe Stats do
 
   context "when data is empty" do
     let(:data) { [] }
-    it { expect(subject).to eq [] }
+    it { expect(subject).to eq [["Github", "No uptime", "No down time"], ["Cloudflare", "No uptime", "No down time"]] }
   end
   context "when data is not empty" do
     context "with mix data" do
