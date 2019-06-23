@@ -5,8 +5,8 @@ class Presenter
 
   BORDER = true
   COLOR  = "green"
-  BOLD   = TRUE
-  WIDTH  = {service: 20, status: 30, time: 25}
+  BOLD   = true
+  WIDTH  = {service: 20, status: 10, message: 25, time: 20}
   ALIGN  = "right"
 
   def header
@@ -16,6 +16,7 @@ class Presenter
       row color: COLOR, bold: BOLD do
         column('Service', width: WIDTH[:service])
         column('Status', width: WIDTH[:status])
+        column('Message', width: WIDTH[:message])
         column('Time', width: WIDTH[:time], align: ALIGN)
       end
     end
@@ -30,6 +31,7 @@ class Presenter
         row do
           column(record[0], width: WIDTH[:service])
           column(record[1], width: WIDTH[:status])
+          column(record[2], width: WIDTH[:message])
           column(Time.at(record[2].to_i).strftime("%d.%m.%Y %T"), width: WIDTH[:time], align: ALIGN)
         end
       end

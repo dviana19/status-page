@@ -7,7 +7,7 @@ require_relative "libs/presenter"
 class StatusPage < Thor
 
   desc "pull", "pull all the status page data from different providers and save to data store"
-  def pull(scope)
+  def pull(scope = nil)
     config    = Config.new(scope)
     store     = DataStore.new
     presenter = Presenter.new
@@ -19,7 +19,7 @@ class StatusPage < Thor
   end
 
   desc "live", "constantly query the URLs and output the status periodically on the console and save to data store"
-  def live(scope)
+  def live(scope = nil)
     begin
       config    = Config.new(scope)
       store     = DataStore.new
