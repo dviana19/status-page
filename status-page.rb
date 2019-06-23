@@ -3,6 +3,7 @@ require_relative "libs/config"
 require_relative "libs/spider"
 require_relative "libs/data_store"
 require_relative "libs/presenter"
+require_relative "libs/stats"
 
 class StatusPage < Thor
 
@@ -40,8 +41,20 @@ class StatusPage < Thor
   def history
     presenter = Presenter.new
     print presenter.header
-    DataStore.read do |row|
+    DataStore.foreach do |row|
       print presenter.show([row])
+    end
+  end
+
+  desc "stats", "display summarized data in the log"
+  def stats
+    config     = Config.new
+    presenter  = Presenter.new
+    data       = DataStore.read_all
+    stats_data = Stats.summarize(config.services, data)
+    print presenter.header_stats
+    stats_data.each do |row|
+      print presenter.show_stats([row])
     end
   end
 

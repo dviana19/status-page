@@ -18,10 +18,14 @@ class DataStore
   end
 
   class << self
-    def read
+    def foreach
       CSV.foreach("#{PATH}/#{FILE}") do |row|
         yield(row)
       end
+    end
+
+    def read_all
+      CSV.read("#{PATH}/#{FILE}")
     end
 
     def backup(given_path)

@@ -24,10 +24,17 @@ RSpec.describe DataStore do
   end
 
   describe "public class methods" do
-    describe "#read" do
-      after { subject.read }
-      it "should reads the file with foreach" do
+    describe "#foreach" do
+      after { subject.foreach }
+      it "should reads the file line by line" do
         expect(CSV).to receive(:foreach).with("data/store.csv")
+      end
+    end
+
+    describe "#read_all" do
+      after { subject.read_all }
+      it "should reads the whole file and return an array of rows" do
+        expect(CSV).to receive(:read).with("data/store.csv")
       end
     end
 
