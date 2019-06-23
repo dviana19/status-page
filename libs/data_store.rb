@@ -5,18 +5,22 @@ class DataStore
   PATH = "data"
   FILE = "store.csv"
 
-  class << self
-    def open
-      mode = "wb"
-      if File.exist?("#{PATH}/#{FILE}")
-        mode = "ab"
-      end
-      CSV.open("#{PATH}/#{FILE}", mode)
+  def initialize
+    mode = "wb"
+    if File.exist?("#{PATH}/#{FILE}")
+      mode = "ab"
     end
+    @csv = CSV.open("#{PATH}/#{FILE}", mode)
+  end
 
+  def save(data)
+    data.each { |row| @csv << row }
+  end
+
+  class << self
     def read
       CSV.foreach("#{PATH}/#{FILE}") do |row|
-        yield(row[0], row[1], Time.at(row[2].to_i))
+        yield(row)
       end
     end
 

@@ -1,9 +1,11 @@
-require 'yaml'
+require "yaml"
+
 class Config
-  FILEPATH = "config/services.yml"
+  FILEPATH = "config/setup.yml"
 
   def initialize
-    @yaml = YAML.load_file(FILEPATH)
+    @yaml = File.exist?(FILEPATH) ? YAML.load_file(FILEPATH) : {}
+    @yaml = {} unless @yaml
   end
 
   def services
