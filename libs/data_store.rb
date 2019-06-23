@@ -33,7 +33,7 @@ class DataStore
     end
 
     def restore(given_path)
-      FileUtils.cp("#{given_path}/#{FILE}.bkp", "#{PATH}/#{FILE}")
+      FileUtils.cp("#{given_path}/#{FILE}.bkp", "#{PATH}/#{FILE}", preserve: true)
     end
 
     private
