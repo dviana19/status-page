@@ -94,7 +94,7 @@ $ docker exec -it status status-page stats
 Create a backup file inside the path passed as an argument. You don't need to pass the file name in data argument, only the path. The file will be save as your/path/of/choice/store.csv.bkp
 
 ```bash
-$ docker exec -it diogoviana/status-page status-page backup /usr/local/bkp
+$ docker exec -it status status-page backup /usr/local/bkp
 ```
 
 ### Restore --path
@@ -102,7 +102,7 @@ $ docker exec -it diogoviana/status-page status-page backup /usr/local/bkp
 Restore and merge the backup file to the current store file. Again, the file name is not needed, only the path which the backup was saved. It is going to look up for a file named store.csv.bkp inside the page you gave as an argument.
 
 ```bash
-$ docker exec -it diogoviana/status-page status-page restore /usr/local/bkp
+$ docker exec -it status status-page restore /usr/local/bkp
 ```
 
 ## Test
