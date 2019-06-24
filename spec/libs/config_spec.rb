@@ -5,8 +5,8 @@ RSpec.describe Config do
 
   context "when file exists" do
     context "without scope" do
-      it { expect(subject.services.size).to eq 4 }
-      it { expect(subject.services.map{|s| s["name"]}).to match_array %w(Bitbucket Cloudflare Rubygems Github) }
+      it { expect(subject.services.size).to eq 6 }
+      it { expect(subject.services.map{|s| s["name"]}).to match_array %w(Bitbucket Cloudflare Rubygems Github Dropbox Intercom) }
       it { expect(subject.interval).to eq 5 }
     end
     context "with scope" do
@@ -16,8 +16,8 @@ RSpec.describe Config do
     end
     context "with an inexistent scope" do
       subject { described_class.new("unknown") }
-      it { expect(subject.services.size).to eq 4 }
-      it { expect(subject.services.map{|s| s["name"]}).to match_array %w(Bitbucket Cloudflare Rubygems Github) }
+      it { expect(subject.services.size).to eq 6 }
+      it { expect(subject.services.map{|s| s["name"]}).to match_array %w(Bitbucket Cloudflare Rubygems Github Dropbox Intercom) }
     end
   end
   context "when file does not exists" do

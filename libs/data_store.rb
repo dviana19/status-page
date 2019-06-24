@@ -1,5 +1,6 @@
 require "csv"
 require "fileutils"
+#require "file"
 
 class DataStore
   PATH = "data"
@@ -34,12 +35,6 @@ class DataStore
 
     def restore(given_path)
       FileUtils.cp("#{given_path}/#{FILE}.bkp", "#{PATH}/#{FILE}", preserve: true)
-    end
-
-    private
-
-    def copy(src, dest)
-      FileUtils.cp(src, dest)
     end
   end
 end

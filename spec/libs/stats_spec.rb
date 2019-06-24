@@ -33,8 +33,8 @@ RSpec.describe Stats do
         ]
       end
       it { expect(subject).to eq [
-        ["Github", "1 day", "4 days"],
-        ["Cloudflare", "1 hour", "2 days"],
+        ["Github", "3 days", "4 days"],
+        ["Cloudflare", "4 days", "2 days"],
       ]}
     end
     context "with no down time" do
@@ -51,8 +51,8 @@ RSpec.describe Stats do
         ]
       end
       it { expect(subject).to eq [
-        ["Github", "1 day", "No down time"],
-        ["Cloudflare", "1 hour", "No down time"],
+        ["Github", "1 week", "No down time"],
+        ["Cloudflare", "6 days", "No down time"],
       ]}
     end
     context "with no up time" do

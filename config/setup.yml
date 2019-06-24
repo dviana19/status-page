@@ -7,4 +7,8 @@ services:
     address: https://status.rubygems.org/
   - name: Github
     address: https://www.githubstatus.com/
+  - name: Intercom
+    address: https://www.intercomstatus.com/
+  - name: Dropbox
+    address: https://status.dropbox.com/
 interval: 5

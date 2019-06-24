@@ -1,6 +1,6 @@
 # Status-page
 
-A command-line tool that will pull status information from different services, displays the results and saves it into a data store.
+A command-line tool that will pull status information from different services, displays the results on the console and saves it into a data store.
 
 ## Installation
 
@@ -10,7 +10,9 @@ Download the docker image
 $ docker pull diogoviana/status-page
 ```
 
-## Requirements
+## Gems used
+
+You don't have to install any gem if you are using the Docker image.
 
 ```bash
 $ gem install thor
@@ -35,18 +37,26 @@ $ services:
 
 ## Usage
 
+### Start your docker image
+
+All following steps need the docker image to be running ir order to work correctly.
+
+```bash
+$ docker run -d -t --name status diogoviana/status-page
+```
+
 ### Pull --scope
 
 Pull the status of all services configured in setup.yml. The resuls will both be saved in a CSV file and printed on the screen.
 
 ```bash
-$ docker run -it diogoviana/status-page status-page pull
+$ docker exec -it status status-page pull
 ```
 
 You can additionally add a scope to pull data only from a specific service. This service should exist inside your setup.yml file.
 
 ```bash
-$ docker run -it diogoviana/status-page status-page pull github
+$ docker exec -it status status-page pull github
 ```
 
 ### Live --scope
@@ -54,13 +64,13 @@ $ docker run -it diogoviana/status-page status-page pull github
 Pull the status of all services configured in setup.yml continuously. The resuls will both be saved in a CSV file and printed on the screen. This service can be canceled by pressing CTRL + C.
 
 ```bash
-$ docker run -it diogoviana/status-page status-page live
+$ docker exec -it status status-page live
 ```
 
 You can additionally add a scope to pull data only from a specific service. This service should exist inside your setup.yml file.
 
 ```bash
-$ docker run -it diogoviana/status-page status-page live github
+$ docker exec -it status status-page live github
 ```
 
 ### History
@@ -68,7 +78,7 @@ $ docker run -it diogoviana/status-page status-page live github
 Display all the data which was gathered by LIVE and PULL modes.
 
 ```bash
-$ docker run -it diogoviana/status-page status-page history
+$ docker exec -it status status-page history
 ```
 
 ### Stats
@@ -76,7 +86,7 @@ $ docker run -it diogoviana/status-page status-page history
 Display all the data which was gathered by LIVE and PULL in a summarized way
 
 ```bash
-$ docker run -it diogoviana/status-page status-page stats
+$ docker exec -it status status-page stats
 ```
 
 ### Backup --path
@@ -84,7 +94,7 @@ $ docker run -it diogoviana/status-page status-page stats
 Create a backup file inside the path passed as an argument. You don't need to pass the file name in data argument, only the path. The file will be save as your/path/of/choice/store.csv.bkp
 
 ```bash
-$ docker run -it diogoviana/status-page status-page backup /usr/local/bkp
+$ docker exec -it diogoviana/status-page status-page backup /usr/local/bkp
 ```
 
 ### Restore --path
@@ -92,5 +102,13 @@ $ docker run -it diogoviana/status-page status-page backup /usr/local/bkp
 Restore and merge the backup file to the current store file. Again, the file name is not needed, only the path which the backup was saved. It is going to look up for a file named store.csv.bkp inside the page you gave as an argument.
 
 ```bash
-$ docker run -it diogoviana/status-page status-page restore /usr/local/bkp
+$ docker exec -it diogoviana/status-page status-page restore /usr/local/bkp
+```
+
+## Test
+
+All class files are tested using rspec. You can confirm that all are green, by running:
+
+```bash
+$ rspec spec/
 ```

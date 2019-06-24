@@ -6,11 +6,14 @@ class Stats
     services.each do |service|
       name  = service["name"]
       rows  = data.select { |s| s[0] == name }
-      ups   = rows.select { |d| d[1] == "Up" }.last
 
-      if ups.nil?
+      last_down  = rows.rindex { |s| s[1] == "Down" } || - 1
+      up_indexes = rows.map.each_with_index { |v, k| k if v[1] == "Up" }.compact
+
+      if up_indexes.empty?
         up_result = "No uptime"
       else
+        ups = rows.slice(last_down + 1, up_indexes.length).first
         up_result = TimeDifference.between(Time.at(ups[3].to_i), Time.now).humanize.downcase
       end
 
@@ -59,6 +62,6 @@ class Stats
       day: (diff / (60 * 60 * 24)).round
     }.delete_if { |k, v| v == 0 }.min_by{|k, v| v}
 
-    "#{result.last} #{result.first}#{result.last > 1 ? 's' : ''}"
+    result.nil? ? "No down time" : "#{result.last} #{result.first}#{result.last > 1 ? 's' : ''}"
   end
 end
